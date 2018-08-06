@@ -19,6 +19,7 @@ which is not nearly enough bytes to embed actual malware in the .exe
 
 if you're an assembly programmer, you can also check the patches i made with a disassembler (like ollydbg), 
 the original game's entrypoint starts with: 
+```asm
 
 CPU Disasm
 Address   Hex dump          Command                                  Comments
@@ -28,10 +29,11 @@ Address   Hex dump          Command                                  Comments
 004C6E63  |.  68 B0B84F00   push offset MFatigue.004FB8B0
 004C6E68  |.  68 2CC94C00   push MFatigue.004CC92C
 004C6E6D  |.  64:A1 0000000 mov eax,dword ptr fs:[0]
-               
+```            
 
 
 and my patched version starts with: 
+```asm
 
 CPU Disasm
 Address   Hex dump          Command                                  Comments
@@ -53,6 +55,6 @@ Address   Hex dump          Command                                  Comments
 004C37C9      E9 9A360000   jmp MFatigue.004C6E68
 004C6E68      68 2CC94C00   push MFatigue.004CC92C                  
 004C6E6D  |.  64:A1 0000000 mov eax,dword ptr fs:[0]
-
+```
 
 after that, everything in the exe is the same. why all the jumps, you ask? because the small unused regions i found was too small so i had to hop between them (luckily `jmp short` instructions are just 2 bytes long), i think they were put in place by the compiler for alignment issues (while x86 cpus doesn't require aligned data, they run faster if data is properly aligned)
