@@ -14,6 +14,7 @@ however, this race condition bug does not occur when running on just a single CP
 both the original game.exe, and my patched game.exe is in the repository, compare the 2, and you'll see:
 
 1: only the modified version looks like a virus to a virus to a scanner
+
 2: the difference between the original .exe and the modified .exe is just a few bytes (less than 20 bytes, i imagine), 
 which is not nearly enough bytes to embed actual malware in the .exe
 
